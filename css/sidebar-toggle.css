@@ -1,0 +1,114 @@
+
+/* ==========================================
+   RE:START SIDEBAR VISIBILITY
+   Desktop only.
+   ========================================== */
+
+@media (min-width: 1001px) {
+
+    .app-layout .sidebar {
+        transition:
+            transform 300ms cubic-bezier(.2,.75,.25,1),
+            opacity 200ms ease,
+            visibility 200ms ease;
+
+        will-change: transform;
+    }
+
+    .app-layout .main-area {
+        transition:
+            margin-left 300ms cubic-bezier(.2,.75,.25,1);
+    }
+
+    /* Hidden state */
+
+    .app-layout.sidebar-collapsed .sidebar {
+        transform: translateX(calc(-100% - 14px));
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .app-layout.sidebar-collapsed .main-area {
+        margin-left: 0;
+    }
+
+    /* Topbar layout */
+
+    .topbar-left {
+        min-width: 0;
+
+        display: flex;
+        align-items: center;
+
+        gap: 14px;
+    }
+
+    /* Toggle button */
+
+    .sidebar-toggle-button {
+        width: 36px;
+        height: 36px;
+
+        flex: 0 0 36px;
+
+        display: grid;
+        place-items: center;
+
+        border: 1px solid var(--border);
+        border-radius: 10px;
+
+        background: var(--bg-card);
+        color: var(--text-secondary);
+
+        cursor: pointer;
+
+        transition:
+            color 180ms ease,
+            background 180ms ease,
+            border-color 180ms ease,
+            transform 180ms ease;
+    }
+
+    .sidebar-toggle-button:hover {
+        color: var(--accent);
+        background: var(--bg-hover);
+
+        border-color: color-mix(
+            in srgb,
+            var(--accent) 35%,
+            var(--border)
+        );
+    }
+
+    .sidebar-toggle-button:active {
+        transform: scale(.96);
+    }
+
+    .sidebar-toggle-glyph {
+        display: block;
+        font-size: 20px;
+        line-height: 1;
+        font-weight: 700;
+    }
+
+    /* Home breadcrumb */
+
+    .breadcrumb-home {
+        color: var(--text-secondary);
+        text-decoration: none;
+    }
+
+    .breadcrumb-home:hover {
+        color: var(--accent);
+    }
+}
+
+/* Do not change mobile navigation */
+
+@media (max-width: 1000px) {
+    .sidebar-toggle-button {
+        display: none !important;
+    }
+}
